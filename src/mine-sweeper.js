@@ -23,10 +23,184 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
+function minesweeper(matrix) {
+  // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
-}
+  // let copyMatrix = matrix.slice();
+  let copyMatrix = [];
+  for (let i = 0; i < matrix.length; i++)
+	copyMatrix.push(matrix[i].slice())
+  
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j ++) {
+      let count = 0;
+      if (i === 0) {
+        if (j === 0) {
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j + 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else if (j === (matrix[i].length - 1)) {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j - 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j + 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        }
+      } else if (i === matrix.length - 1) {
+        if (j === 0) {
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j + 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else if (j === matrix[i].length - 1) {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j - 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j + 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        }
+      } else {
+        if (j === 0) {
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j + 1] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else if (j === matrix[i].length - 1) {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        } else {
+          if (matrix[i][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i - 1][j] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j - 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j + 1] === true) {
+            count += 1;
+          }
+          if (matrix[i + 1][j] === true) {
+            count += 1;
+          }
+          copyMatrix[i][j] = count
+          count = 0;
+        }
+      }
+      }
+    }
+    return copyMatrix;
+  }
+  
+// }
+
+matrix = [
+  [true, false, false],
+  [false, true, false],
+  [false, false, false]
+  ]
+minesweeper(matrix)
 
 module.exports = {
   minesweeper
