@@ -26,12 +26,9 @@ function renameFiles(names) {
     } else {
       let count = 1;
       while (true) {
-        // console.log((names[i] + "(" + String(count) + ")"))
-        // console.log(newAray)
         if (newAray.includes(names[i] + "(" + String(count) + ")")) {
           count += 1;
         } else {
-          // console.log(count)
           newAray.push(names[i] + "(" + String(count) + ")");
 
           break
