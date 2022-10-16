@@ -12,7 +12,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function getSeason(date) {
-  throw new NotImplementedError('Not implemented');
+  // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
   
   const seasons = {
@@ -26,8 +26,12 @@ function getSeason(date) {
   //      throw new Error('Invalid date!');
   //   }
 
-  if (!date) {
-    return 'Unable to determine the time of year!';
+  
+  if (!(date instanceof Date) || Object.getOwnPropertyNames(date).length) {
+    if (!date) {
+      return 'Unable to determine the time of year!';
+    }
+    throw new Error('Invalid date!');
   }
 
   for (let i of Object.keys(seasons)) {
@@ -41,12 +45,12 @@ function getSeason(date) {
   }
 }
 
-// const fake = function toString() {
-//     return Date.prototype.getDate.call(new Date(2020, 0, 3, 4, 5, 6));
-// };
+const fake = function toString() {
+    return new Date(202, 3, 5, 6, 7, 8);
+};
 
 // console.log(fake())
-// console.log(getSeason(fake()))
+console.log(getSeason())
 
 
 module.exports = {
