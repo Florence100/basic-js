@@ -12,53 +12,31 @@ const { NotImplementedError } = require('../extensions/index.js');
  * depthCalc.calculateDepth([[[]]]) => 3
  *
  */
-// class DepthCalculator {
 
-
-  // count = this.count;
-  // count = 0;
-  // countArray = this.countArray;
-  // countArray = [];
-
-  // calculateDepth(arr) {
-  //   this.countArr(arr);
-  //   // console.log(this.countArray)
-  //   return Math.max.apply(null, this.countArray) + 1;
-  // }
-
-  // countArr (myArray) {
-  //   for (let i = 0; i < myArray.length; i++) {
-  //     if (myArray[i] instanceof Array) {
-  //       this.count++;
-  //       // console.log(this.count)
-  //       for (let j = 0; j < myArray[i].length; j++) {
-  //         if (myArray[i][j] instanceof Array) {
-  //           let subArr = myArray[i][j];
-  //           this.count++;      
-  //           this.calculateDepth(subArr)
-  //         }
-  //       }
-  //     }
-  //     this.countArray.push(this.count) 
-  //   }
-  //   this.countArray.push(this.count)
-  //   this.count = 0;
-  // }
-  // }
-  
-// let test = new DepthCalculator()
-// console.log(test.calculateDepth([[[[[[[[[[]]]]]]]]]]))
-
-// module.exports = {
-//   DepthCalculator
-// };
 
 class DepthCalculator {
-  calculateDepth(/* arr */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(arr) {
+    this.arr = arr;
+  }
+
+  calculateDepth(arr) {
+    const self = this;
+    let count = 0;
+
+    if (Array.isArray(arr) && arr.length) {
+      count = count + 1 + Math.max(...arr.map((e) => self.calculateDepth(e)))
+    } else {
+      if (Array.isArray(arr) && !arr.length) {
+        count += 1;
+      }
+    }
+
+    return count;
   }
 }
+
+// let test = new DepthCalculator();
+// console.log(test.calculateDepth([1, 2, 3, 4, [1, 2, [1, 2, [[[]]]]], 5, [1, [[[[[[]]]]]]]]))
 
 module.exports = {
   DepthCalculator
